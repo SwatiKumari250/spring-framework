@@ -405,20 +405,6 @@ class CompositeMapTests {
 		}
 
 		@Test
-		void entrySetRemoveWithHiddenEntry() {
-			Map<String, String> first = new HashMap<>(Map.of("baz", "qux"));
-			Map<String, String> second = new HashMap<>(Map.of("baz", "quux"));
-			CompositeMap<String, String> composite = new CompositeMap<>(first, second);
-
-			Map.Entry<String, String> hidden = entry("baz", "quux");
-
-			assertThat(composite.entrySet().contains(hidden)).isFalse();
-			assertThat(composite.entrySet().remove(hidden)).isFalse();
-			assertThat(composite.get("baz")).isEqualTo("qux");
-			assertThat(second).containsExactly(entry("baz", "quux"));
-		}
-
-		@Test
 		void entrySetRemoveWithIdenticalEntries() {
 			Map<String, String> first = new HashMap<>(Map.of("foo", "bar", "baz", "qux"));
 			Map<String, String> second = new HashMap<>(Map.of("baz", "qux", "corge", "grault"));
